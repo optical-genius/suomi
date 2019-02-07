@@ -16,6 +16,12 @@ class CreateWordsTable extends Migration
         Schema::create('words', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
+            $table->integer('user_id');
+            $table->text('word_suomi');
+            $table->text('word_rus');
+            $table->text('img')->nullable();
+            $table->double('results', 8, 5)->nullable();
+            $table->double('attempts', 8, 5)->nullable();
         });
     }
 

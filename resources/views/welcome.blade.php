@@ -9,6 +9,11 @@
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
+        <link href="{{ asset('../public/css/app.css') }}" rel="stylesheet">
+
+
+
+
 
         <!-- Styles -->
         <style>
@@ -78,18 +83,30 @@
             @endif
 
             <div class="content">
-                <div class="title m-b-md">
-                    Laravel
+                mina | sina | olen <br>
+
+                <h1>Учим финский язык</h1>
+
+                <div class="container">
+                    <p>Наш сайт позволяет сосредоточится на изучении слов</p>
+
+                    <p>Как работает сайт: выберите слова которые вы плохо знаете и добавьте их в изучение. Повторяйте слова по мере необходимости.
+                    Алгоритм сайта будет считать на каких словах вы делаете ошибки, а на каких нет и в зависимости от результатов стараться
+                    чаще выводить слова с плохой оценкой.</p>
+
+                    <p>Сайт является некоммерческим проектом. По вопросам / предложениям пишите на почту @yandex.ru</p>
                 </div>
 
-                <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
+
+                <button type="button" class="btn btn-primary">Начать</button>
+
             </div>
+
         </div>
+
+
     </body>
+
+
+
 </html>
