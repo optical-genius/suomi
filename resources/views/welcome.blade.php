@@ -74,16 +74,16 @@
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
-                        <a href="{{ url('/home') }}">Home</a>
+                        <a href="{{ url('/home') }}">Главная</a>
                     @else
-                        <a href="{{ route('login') }}">Login</a>
-                        <a href="{{ route('register') }}">Register</a>
+                        <a href="{{ route('login') }}">Вход</a>
+                        <a href="{{ route('register') }}">Регистрация</a>
                     @endauth
                 </div>
             @endif
 
             <div class="content">
-                mina | sina | olen <br>
+                mina | sina | han <br>
 
                 <h1>Учим финский язык</h1>
 
@@ -97,9 +97,9 @@
                     <p>Сайт является некоммерческим проектом. По вопросам / предложениям пишите на почту @yandex.ru</p>
                 </div>
 
-
+                <a href="/word">
                 <button type="button" class="btn btn-primary">Начать</button>
-
+                </a>
             </div>
 
         </div>

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Word;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Input;
 
 class WordController extends Controller
 {
@@ -34,9 +36,22 @@ class WordController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Word $word)
     {
-        //
+
+
+        $input = Input::all();
+
+        $word = new Word();
+        $word->user_id = auth()->user()->id;
+        $word->word_suomi = $input['word_suomi']['0'];
+        $word->word_rus = $input['word_rus']['0'];
+
+        $word->save();
+        return redirect('/word');
+
+
+
     }
 
     /**
@@ -45,9 +60,12 @@ class WordController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
-        //
+        // Get ID authenticated user
+        $id = Auth::id();
+        $words = Word::all()->where('user_id', $id);
+        return view('wordtrain', compact('words'));
     }
 
     /**
