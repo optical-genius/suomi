@@ -26,4 +26,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::group(['middleware' => 'auth'], function () {
     Route::get('word', 'WordController@show');
     Route::post('wordadd', 'WordController@store');
+    Route::get('word/edit/{id}', 'WordController@edit');
+    Route::post('wordupdate', 'WordController@update');
+    Route::get('worddelete/{id}', 'WordController@destroy');
 });

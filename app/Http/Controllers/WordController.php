@@ -36,22 +36,15 @@ class WordController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Word $word)
+    public function store(Request $request)
     {
-
-
-        $input = Input::all();
-
+        //dd(request(['word_rus']));
         $word = new Word();
         $word->user_id = auth()->user()->id;
-        $word->word_suomi = $input['word_suomi']['0'];
-        $word->word_rus = $input['word_rus']['0'];
-
+        $word->word_suomi = $request->input('word_suomi')['0'];
+        $word->word_rus = $request->input('word_rus')['0'];
         $word->save();
         return redirect('/word');
-
-
-
     }
 
     /**
@@ -63,8 +56,8 @@ class WordController extends Controller
     public function show()
     {
         // Get ID authenticated user
-        $id = Auth::id();
-        $words = Word::all()->where('user_id', $id);
+        $user_id = Auth::id();
+        $words = Word::all()->where('user_id', $user_id);
         return view('wordtrain', compact('words'));
     }
 
@@ -75,8 +68,11 @@ class WordController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
+
     {
-        //
+        $user_id = Auth::id();
+        $words = Word::all()->where('user_id', $user_id)->where('id', $id);
+        return view('wordedit', compact('words'));
     }
 
     /**
@@ -86,9 +82,13 @@ class WordController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $word = Word::find($request->input('id')['0']);
+        $word->word_suomi = $request->input('word_suomi')['0'];
+        $word->word_rus = $request->input('word_rus')['0'];
+        $word->save();
+        return redirect('/word');
     }
 
     /**
@@ -99,6 +99,8 @@ class WordController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $word = Word::find($id);
+        $word->delete();
+        return redirect('/word');
     }
 }

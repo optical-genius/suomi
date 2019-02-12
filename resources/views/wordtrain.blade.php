@@ -49,11 +49,12 @@
                 @foreach($words as $word)
 
                     <div class="row">
-                        <div class="col-md-4"></div>
+                        <div class="col-md-2"></div>
                         <div class="col-md-1">{{ $table_id++ }}</div>
-                        <div class="col-md-1">{{ $word->word_suomi }}</div>
-                        <div class="col-md-1">{{ $word->word_rus }}</div>
-                        <div class="col-md-5"></div>
+                        <a href="/word/edit/{{ $word->id }}"><div class="col-md-3">{{ $word->word_suomi }}</div></a>
+                        <a href="/word/edit/{{ $word->id }}"><div class="col-md-3">{{ $word->word_rus }}</div></a>
+                        <div class="col-md-1"><a href="worddelete/{{$word->id}}">del</a></div>
+                        <div class="col-md-2"></div>
                     </div>
 
                 @endforeach
@@ -68,10 +69,10 @@
 
                 <div class="form-row">
                     <div class="col-md-4">
-                        <input type="text" name="word_suomi[]"  class="form-control" id="word_suomi" placeholder="Слово на финском">
+                        <input type="text" name="word_suomi[]"  class="form-control" id="word_suomi" placeholder="Слово на финском" required autofocus>
                     </div>
                     <div class="col-md-4">
-                        <input type="text" name="word_rus[]" class="form-control" id="word_rus" placeholder="Слово на русском">
+                        <input type="text" name="word_rus[]" class="form-control" id="word_rus" placeholder="Слово на русском" required>
                     </div>
                     <div class="col-md-4">
                     <button type="submit" class="btn btn-primary mb-2">Добавить</button>
