@@ -57,7 +57,7 @@ class WordController extends Controller
     {
         // Get ID authenticated user
         $user_id = Auth::id();
-        $words = Word::all()->where('user_id', $user_id);
+        $words = Word::all()->where('user_id', $user_id)->sortBy('word_suomi');
         return view('wordtrain', compact('words'));
     }
 
@@ -102,5 +102,18 @@ class WordController extends Controller
         $word = Word::find($id);
         $word->delete();
         return redirect('/word');
+    }
+
+    public function massdelete(Input $input)
+    {
+        $worddelemass = Input::all();
+        foreach ($worddelemass as $worddel) {
+            Word::where('id', $worddel)->delete();
+
+        }
+        return redirect('/word');
+
+
+
     }
 }

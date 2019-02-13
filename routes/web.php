@@ -29,4 +29,5 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('word/edit/{id}', 'WordController@edit');
     Route::post('wordupdate', 'WordController@update');
     Route::get('worddelete/{id}', 'WordController@destroy');
+    Route::post('massdelete', 'WordController@massdelete');
 });

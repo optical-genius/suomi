@@ -28,10 +28,10 @@
 @if (Route::has('login'))
     <div class="top-right links">
         @auth
-            <a href="{{ url('/home') }}">Home</a>
+            <a href="{{ url('/home') }}">Главная</a>
         @else
-            <a href="{{ route('login') }}">Login</a>
-            <a href="{{ route('register') }}">Register</a>
+            <a href="{{ route('login') }}">Вход</a>
+            <a href="{{ route('register') }}">Регистрация</a>
         @endauth
     </div>
 @endif
@@ -42,7 +42,8 @@
             <h1>Слова которые я учу/выучил</h1>
 
 
-
+            <form method="POST" action="/massdelete">
+                {{csrf_field()}}
             <div class="trainword">
                 <?php $table_id = 1; ?>
 
@@ -54,12 +55,18 @@
                         <a href="/word/edit/{{ $word->id }}"><div class="col-md-3">{{ $word->word_suomi }}</div></a>
                         <a href="/word/edit/{{ $word->id }}"><div class="col-md-3">{{ $word->word_rus }}</div></a>
                         <div class="col-md-1"><a href="worddelete/{{$word->id}}">del</a></div>
-                        <div class="col-md-2"></div>
+                        <div class="col-md-2"><input type="checkbox" id="id[]" name="{{ $word->id }}" value="{{ $word->id }}"></div>
                     </div>
 
                 @endforeach
+
+                    <div class="row">
+                        <div class="col-md-10"></div>
+                        <div class="col-md-2"> <button type="submit" class="btn btn-primary mb-2">Удалить</button></div>
+                    </div>
             </div>
 
+            </form>
 
 
             <div class="addword">
