@@ -80,7 +80,15 @@
             </form>
         </div>
 
+                    <div id="app">
+                            <word-component :urldata="{{json_encode($words)}}"></word-component>
 
+                        <span v-bind:title="message">
+                            Наведи на меня курсор на пару секунд,
+                            чтобы увидеть динамически связанное значение title!
+                        </span>
+                    </div>
+                     <script src="{!! asset('js/app.js') !!}"></script>
     </div>
 
 </div>

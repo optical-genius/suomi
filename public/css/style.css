@@ -3,13 +3,9 @@ html, body {
     color: #636b6f;
     font-family: sans-serif !important;
     font-weight: 100;
-    height: 100vh;
     margin: 0;
 }
 
-.full-height {
-    height: 100vh;
-}
 
 .flex-center {
     align-items: center;
@@ -51,8 +47,14 @@ html, body {
 
 .addword{
     margin-top: 30px;
+    padding-bottom: 50px;
+    margin-bottom: 50px;
 }
 
 .trainword{
     margin-top: 30px;
+}
+
+h1 {
+    font-size: 1.4em;
 }

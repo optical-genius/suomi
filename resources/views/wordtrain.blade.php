@@ -22,6 +22,8 @@
         <link href="{{ asset('../public/css/style.css') }}" rel="stylesheet">
 
 
+
+
     </head>
     <body>
         <div class="flex-center position-ref full-height">
@@ -47,22 +49,53 @@
             <div class="trainword">
                 <?php $table_id = 1; ?>
 
+
+
+
+
+
+
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Suomi sana</th>
+                            <th>Русское слово</th>
+                            <th>Действие</th>
+                        </tr>
+                        </thead>
+
+
+
+                        <tbody>
+
+
+
+
+
+
+
                 @foreach($words as $word)
 
-                    <div class="row">
-                        <div class="col-md-2"></div>
-                        <div class="col-md-1">{{ $table_id++ }}</div>
-                        <a href="/word/edit/{{ $word->id }}"><div class="col-md-3">{{ $word->word_suomi }}</div></a>
-                        <a href="/word/edit/{{ $word->id }}"><div class="col-md-3">{{ $word->word_rus }}</div></a>
-                        <div class="col-md-1"><a href="worddelete/{{$word->id}}">del</a></div>
-                        <div class="col-md-2"><input type="checkbox" id="id[]" name="{{ $word->id }}" value="{{ $word->id }}"></div>
-                    </div>
+                    <tr>
+                        <th scope="row">{{ $table_id++ }}</th>
+                        <td><a href="/word/edit/{{ $word->id }}">{{ $word->word_suomi }}</a></td>
+                        <td><a href="/word/edit/{{ $word->id }}">{{ $word->word_rus }}</a></td>
+                        <td><a href="worddelete/{{$word->id}}">del     </a><input type="checkbox" id="id[]" name="{{ $word->id }}" value="{{ $word->id }}"></td>
+
+                    </tr>
+
 
                 @endforeach
 
+                        </tbody>
+                    </table>
+
+
                     <div class="row">
-                        <div class="col-md-10"></div>
+                        <div class="col-md-8"></div>
                         <div class="col-md-2"> <button type="submit" class="btn btn-primary mb-2">Удалить</button></div>
+                        <div class="col-md-2"></div>
                     </div>
             </div>
 
@@ -88,10 +121,17 @@
             </form>
             </div>
 
-
         </div>
 
         </div>
+
+
+
+        <div id="app">
+            <example-component></example-component>
+
+        </div>
+        <script src="{!! asset('js/app.js') !!}"></script>
 
 
 </body>

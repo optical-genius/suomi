@@ -84,11 +84,13 @@ class WordController extends Controller
      */
     public function update(Request $request)
     {
-        $word = Word::find($request->input('id')['0']);
-        $word->word_suomi = $request->input('word_suomi')['0'];
-        $word->word_rus = $request->input('word_rus')['0'];
-        $word->save();
+        $words = Word::find($request->input('id')['0']);
+        $words->word_suomi = $request->input('word_suomi')['0'];
+        $words->word_rus = $request->input('word_rus')['0'];
+        $words->save();
         return redirect('/word');
+        
+
     }
 
     /**
