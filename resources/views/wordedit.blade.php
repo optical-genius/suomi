@@ -24,7 +24,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Laravel</title>
 
     <!-- Fonts -->
@@ -40,6 +40,7 @@
         <div class="top-right links">
             @auth
                 <a href="{{ url('/home') }}">Главная</a>
+
             @else
                 <a href="{{ route('login') }}">Вход</a>
                 <a href="{{ route('register') }}">Регистрация</a>
@@ -50,8 +51,8 @@
     <div class="content">
 
 
-        <h1>Слова которые я учу/выучил</h1>
-
+        <h1>Редактирование слова /
+            Sanan muokkaus</h1>
 
 
 
@@ -80,15 +81,7 @@
             </form>
         </div>
 
-                    <div id="app">
-                            <word-component :urldata="{{json_encode($words)}}"></word-component>
 
-                        <span v-bind:title="message">
-                            Наведи на меня курсор на пару секунд,
-                            чтобы увидеть динамически связанное значение title!
-                        </span>
-                    </div>
-                     <script src="{!! asset('js/app.js') !!}"></script>
     </div>
 
 </div>

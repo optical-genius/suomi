@@ -3,24 +3,27 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Example Component</div>
+                    <div class="panel-heading">Редактирование слова</div>
 
                     <div class="panel-body">
 
+                        <form action="/wordupdateajax" method="POST" @submit.prevent = "addTask()">
 
                         <div class="form-row" v-for="url in urldata">
-                            <input type="hidden" v-model="url.id">
+                            <input type="hidden" v-model="id" >
                             <div class="col-md-4">
-                                <input type="text" v-model="url.word_suomi" placeholder="Слово на финском" required>
-                            </div>
+                                <input type="text" v-model="word_suomi" :placeholder="url.word_suomi" required>
 
-                            <div class="col-md-4">
-                                <input type="text" v-model="url.word_rus" placeholder="Слово на русском" required>
                             </div>
                             <div class="col-md-4">
-                                <button @click="update" class="btn btn-primary mb-2">Обновить</button>
+                                <input type="text" v-model="word_rus" :placeholder="url.word_rus" required>
+
+                            </div>
+                            <div class="col-md-4">
+                                <button type="submit" value="Add Word" class="btn btn-primary mb-2">Обновить</button>
                             </div>
                         </div>
+                        </form>
 
 
                     </div>
@@ -31,19 +34,38 @@
 </template>
 
 <script>
+
+
     export default {
+        data(){
+          return{
+              word_rus: '',
+              word_suomi: '',
+          }
+        },
         props: [
-            'urldata'
+            'urldata',
         ],
         mounted() {
-            this.update()
+            console.log('mounted')
         },
         methods: {
-            update: function(){
-                axios.get('word/edit/60').then((response) => {
-                    this.urldata = response.data
-                    });
+            addTask() {
+                axios({
+                    method: 'post',
+                    url: '/wordupdateajax',
+                    data: {
+                        id: id['value'],
+                        word_rus: this.word_rus,
+                        word_suomi: this.word_suomi
+                    }
+
+                });
+
+                alert('Слово обновлено');
+
+            }
             }
         }
-    }
+
 </script>

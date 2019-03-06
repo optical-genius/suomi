@@ -83,7 +83,7 @@
             @endif
 
             <div class="content">
-                mina | sina | han <br>
+                mina | sina | olen <br>
 
                 <h1>Учим финский язык</h1>
 

@@ -18,9 +18,9 @@ window.Vue = require('vue');
 Vue.component('example-component', require('./components/ExampleComponent.vue'));
 Vue.component('word-component', require('./components/WordComponent.vue'));
 
-const app = new Vue({
-    el: '#app',
+const test = new Vue({
+    el: '#test',
     data: {
-        message: 'WordComponent ' + new Date().toLocaleString()
+        input: []
     }
 });

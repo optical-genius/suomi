@@ -8,10 +8,14 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>@yield('title')</title>
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
+    <link href="{{ asset('../public/css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('../public/css/style.css') }}" rel="stylesheet">
+
+
 </head>
 <body>
     <div id="app">
@@ -29,7 +33,7 @@
 
                     <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
+                       Учим финский язык
                     </a>
                 </div>
 
@@ -42,30 +46,48 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
-                        @guest
-                            <li><a href="{{ route('login') }}">Вход</a></li>
-                            <li><a href="{{ route('register') }}">Регистрация</a></li>
-                        @else
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" v-pre>
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
+                                @auth
 
-                                <ul class="dropdown-menu">
-                                    <li>
-                                        <a href="{{ route('logout') }}"
-                                            onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                            Logout
-                                        </a>
+                            <li><a href="{{ url('/word') }}">Главная</a></li>
 
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                            {{ csrf_field() }}
-                                        </form>
-                                    </li>
-                                </ul>
-                            </li>
-                        @endguest
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Тренировка с финского
+                                </button>
+                                <div class="dropdown-menu">
+                                    <li> <a href="{{ url('/suomitrain') }}">Тренировка с финского</a></li>
+                                    <li><a href="{{ url('/randomsuomi') }}">10 случайных финских слов</a></li>
+                                    <div class="dropdown-divider"></div>
+                                </div>
+                            </div>
+
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Тренировка с русского
+                                </button>
+                                <div class="dropdown-menu">
+                                    <li> <a href="{{ url('/russiantrain') }}">Тренировка с русского</a></li>
+                                    <li><a href="{{ url('/randomrussian') }}">10 случайных русских слов</a></li>
+
+                                    <div class="dropdown-divider"></div>
+                                </div>
+                            </div>
+
+
+
+
+
+
+
+
+
+                                    <li><a href="{{ url('/addlessons') }}">Добавить урок (слова по тематике)</a></li>
+                                     <li><a href="{{ url('/lessons') }}">Все уроки</a></li>
+
+                                @else
+                                    <li><a href="{{ route('login') }}">Вход</a></li>
+                                    <li> <a href="{{ route('register') }}">Регистрация</a></li>
+                                @endauth
                     </ul>
                 </div>
             </div>

@@ -61,6 +61,39 @@ class WordController extends Controller
         return view('wordtrain', compact('words'));
     }
 
+
+    public function suomitrain()
+    {
+        // Get ID authenticated user
+        $user_id = Auth::id();
+        $words = Word::all()->where('user_id', $user_id)->sortBy('word_suomi');
+        return view('suomitrain', compact('words'));
+    }
+
+    public function russiantrain()
+    {
+        // Get ID authenticated user
+        $user_id = Auth::id();
+        $words = Word::all()->where('user_id', $user_id)->sortBy('word_rus');
+        return view('russiantrain', compact('words'));
+    }
+
+    public function randomsuomi()
+    {
+        // Get ID authenticated user
+        $user_id = Auth::id();
+        $words = Word::all()->where('user_id', $user_id)->random(10);
+        return view('randomsuomi', compact('words'));
+    }
+
+    public function randomrussian()
+    {
+        // Get ID authenticated user
+        $user_id = Auth::id();
+        $words = Word::all()->where('user_id', $user_id)->random(10);
+        return view('randomrussian', compact('words'));
+    }
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -84,14 +117,13 @@ class WordController extends Controller
      */
     public function update(Request $request)
     {
-        $words = Word::find($request->input('id')['0']);
-        $words->word_suomi = $request->input('word_suomi')['0'];
-        $words->word_rus = $request->input('word_rus')['0'];
+        $words = Word::find($request->input('id')[0]);
+        $words->word_suomi = $request->input('word_suomi')[0];
+        $words->word_rus = $request->input('word_rus')[0];
         $words->save();
         return redirect('/word');
-        
-
     }
+
 
     /**
      * Remove the specified resource from storage.
@@ -114,8 +146,22 @@ class WordController extends Controller
 
         }
         return redirect('/word');
+    }
 
 
 
+    public function test(Request $request)
+    {
+        return ['message' => 'HAve'];
+    }
+
+
+    public function updateajax(Request $request)
+    {
+        $words = Word::find($request->input('id'));
+        $words->word_suomi = $request->input('word_suomi');
+        $words->word_rus = $request->input('word_rus');
+        $words->save();
+        return redirect('/word');
     }
 }
