@@ -17,38 +17,43 @@
 
 @section('content')
 
-        <div class="flex-center position-ref full-height">
 
 
-        <div class="content">
-            <h1 style="padding-top: 40px;">Грамматика - название урока ({{$lessons['name']}})</h1>
 
-            <div class="trainword">
-                <?php $table_id = 1; ?>
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Русское слово</th>
-                            </tr>
-                        </thead>
 
-                        <tbody>
-                            @foreach($words as $word)
-                                <form action="" id="{{ $word->id }}">
-                                    <tr>
-                                        <th scope="row">{{ $table_id++ }}</th>
-                                        <td>{{ $word->word_rus }}</td>
-                                        <td><input type="text" class="formcontrol" id="{{ $word->id }}" name="{{ $word->word_suomi }}"></td>
-                                        <td><button type="button" id="{{ $word->id }}" class="btn btn-primary">Проверить</button></td>
-                                    </tr>
-                                </form>
-                            @endforeach
-                        </tbody>
-                    </table>
+        <div class="row">
+            <div class="col-sm">
+
+                <h1 style="padding-top: 40px;">Грамматика - название урока ({{$lessons['name']}})</h1>
+
+                <div class="trainword">
+                    <?php $table_id = 1; ?>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Русское слово</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                @foreach($words as $word)
+                                    <form action="" id="{{ $word->id }}">
+                                        <tr>
+                                            <th scope="row">{{ $table_id++ }}</th>
+                                            <td>{{ $word->word_rus }}</td>
+                                            <td><input type="text" class="formcontrol" id="{{ $word->id }}" name="{{ $word->word_suomi }}"></td>
+                                            <td><button type="button" id="{{ $word->id }}" class="btn btn-primary">Проверить</button></td>
+                                        </tr>
+                                    </form>
+                                @endforeach
+                            </tbody>
+                        </table>
+                </div>
             </div>
+        </div>
 
-            <p id="contenInput"></p>
+
 
 
 @endsection

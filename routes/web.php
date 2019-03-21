@@ -47,6 +47,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('deletelessons/{id}', 'LessonController@destroy');
 
 
+    //VocabularyController routes
+    Route::get('vocabulary', 'VocabularyController@index');
+
+
     //Test routes
     Route::post('wordupdateajax', 'WordController@updateajax');
     Route::get('/test', 'WordController@test');

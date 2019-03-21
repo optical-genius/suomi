@@ -15,10 +15,22 @@
     <link href="{{ asset('../public/css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('../public/css/style.css') }}" rel="stylesheet">
 
+    <style>
 
+        .content .row{
+            text-align: -webkit-center;
+        }
+
+        .trainword table {
+            max-width: 600px;
+        }
+
+
+
+    </style>
 </head>
 <body>
-    <div id="app">
+
         <nav class="navbar navbar-default navbar-static-top">
             <div class="container">
                 <div class="navbar-header">
@@ -50,39 +62,14 @@
 
                             <li><a href="{{ url('/word') }}">Главная</a></li>
 
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Тренировка с финского
-                                </button>
-                                <div class="dropdown-menu">
-                                    <li> <a href="{{ url('/suomitrain') }}">Тренировка с финского</a></li>
-                                    <li><a href="{{ url('/randomsuomi') }}">10 случайных финских слов</a></li>
-                                    <div class="dropdown-divider"></div>
-                                </div>
-                            </div>
 
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Тренировка с русского
-                                </button>
-                                <div class="dropdown-menu">
-                                    <li> <a href="{{ url('/russiantrain') }}">Тренировка с русского</a></li>
-                                    <li><a href="{{ url('/randomrussian') }}">10 случайных русских слов</a></li>
-
-                                    <div class="dropdown-divider"></div>
-                                </div>
-                            </div>
-
-
-
-
-
-
-
-
-
-                                    <li><a href="{{ url('/addlessons') }}">Добавить урок (слова по тематике)</a></li>
+                                     <li><a href="{{ url('/addlessons') }}">Добавить урок (слова по тематике)</a></li>
                                      <li><a href="{{ url('/lessons') }}">Все уроки</a></li>
+                            <li> <a href="{{ url('/suomitrain') }}">Тренировка с финского</a></li>
+                            <li><a href="{{ url('/randomsuomi') }}">10 случайных финских слов</a></li>
+                            <li> <a href="{{ url('/russiantrain') }}">Тренировка с русского</a></li>
+                            <li><a href="{{ url('/randomrussian') }}">10 случайных русских слов</a></li>
+                            <li><a href="{{ url('/vocabulary') }}">Словарь</a></li>
 
                                 @else
                                     <li><a href="{{ route('login') }}">Вход</a></li>
@@ -92,9 +79,9 @@
                 </div>
             </div>
         </nav>
-
+<div class="content" style="min-width: 500px">
         @yield('content')
-    </div>
+</div>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
