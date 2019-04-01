@@ -4,10 +4,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Word extends Model
+class Vocabulary extends Model
 {
     //
 
-    protected $fillable = ['word_suomi', 'word_rus', 'user_id'];
+    protected $fillable = ['word_suomi', 'word_rus'];
     protected $guarded = ['id'];
 }

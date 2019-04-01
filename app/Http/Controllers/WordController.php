@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Word;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 
 class WordController extends Controller
@@ -149,11 +150,40 @@ class WordController extends Controller
     }
 
 
-
-    public function test(Request $request)
+    public function addFromBigVocabulary (Request $request)
     {
-        return ['message' => 'HAve'];
+
+        $input = Input::get('data');
+
+
+
+        foreach ($input as $item) {
+           // echo $item['word_suomi'] . '<br>';
+            $user_id = Auth::id();
+            $word = Word::updateOrCreate(array('user_id' => $user_id, 'word_rus' => $item['word_rus'], 'word_suomi' => $item['word_suomi']));
+            $word->save();
+           
+        }
+
+
+       // $addWordFromVocabulary = Input::get('data');
+
+      //  foreach ($addWordFromVocabulary as $item) {
+
+        //        $words = Word::firstOrCreate(array('word_rus' => $item['word_rus'], 'word_suomi' => $item['word_suomi']));
+                //$words->user_id = auth()->user()->id;
+              //  $words->word_suomi = $item['word_suomi'];
+                //$words->word_rus = $item['word_rus'];
+
+          //  dd($words);
+            //    $words->save();
+              //  return response()->json(['ok' => 'ok']);
+
+
+        //}
+
     }
+
 
 
     public function updateajax(Request $request)

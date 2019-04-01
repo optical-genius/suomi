@@ -60,20 +60,38 @@
                         <!-- Authentication Links -->
                                 @auth
 
-                            <li><a href="{{ url('/word') }}">Главная</a></li>
-
-
-                                     <li><a href="{{ url('/addlessons') }}">Добавить урок (слова по тематике)</a></li>
-                                     <li><a href="{{ url('/lessons') }}">Все уроки</a></li>
-                            <li> <a href="{{ url('/suomitrain') }}">Тренировка с финского</a></li>
-                            <li><a href="{{ url('/randomsuomi') }}">10 случайных финских слов</a></li>
-                            <li> <a href="{{ url('/russiantrain') }}">Тренировка с русского</a></li>
-                            <li><a href="{{ url('/randomrussian') }}">10 случайных русских слов</a></li>
-                            <li><a href="{{ url('/vocabulary') }}">Словарь</a></li>
+                                    <li>
+                                        <a href="{{ url('/word') }}">Мои слова (мой словарь)</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ url('/addlessons') }}">Добавить урок (слова по тематике)</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ url('/lessons') }}">Все уроки</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ url('/suomitrain') }}">Тренировка с финского</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ url('/randomsuomi') }}">10 случайных финских слов</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ url('/russiantrain') }}">Тренировка с русского</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ url('/randomrussian') }}">10 случайных русских слов</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ url('/vocabulary') }}">Словарь</a>
+                                    </li>
 
                                 @else
-                                    <li><a href="{{ route('login') }}">Вход</a></li>
-                                    <li> <a href="{{ route('register') }}">Регистрация</a></li>
+                                    <li>
+                                        <a href="{{ route('login') }}">Вход</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route('register') }}">Регистрация</a>
+                                    </li>
                                 @endauth
                     </ul>
                 </div>
