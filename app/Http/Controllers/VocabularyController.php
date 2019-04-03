@@ -14,6 +14,11 @@ class VocabularyController extends Controller
 {
     //
 
+
+    /**
+     * Get all words from big vocabulary and paginate
+     * Получаем все слова из большого словаря и разбиваем на страницы
+     */
     public function index()
     {
         $vocabularies = Vocabulary::paginate(25);
@@ -21,19 +26,17 @@ class VocabularyController extends Controller
     }
 
 
-    public function test(Request $request)
+    /**
+     * Word search. Searches for both Russian and Finnish words
+     * Поиск по большому словарю. Ищет как финские так и русские слова.
+     */
+    public function searchwords(Request $request)
     {
-
-        $test = DB::table('vocabularies')
+        $searchwords = DB::table('vocabularies')
             ->where('word_rus', 'like', '%' . $request['word_rus'] . '%')
             ->orWhere('word_suomi', 'like', '%' . $request['word_rus'] . '%')
             ->get();
-
-        return compact('test');
-        // $test = Word::all()->where('word_rus', $request['word_rus']);
-        // return compact('test');
-
-
+        return compact('searchwords');
     }
 
 

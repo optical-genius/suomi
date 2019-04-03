@@ -18,78 +18,47 @@
  */
 
 ?>
-        <!doctype html>
-<html lang="{{ app()->getLocale() }}">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Laravel</title>
-
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
-    <link href="{{ asset('../public/css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('../public/css/style.css') }}" rel="stylesheet">
+@extends('layouts.app')
+@section('title')
+    Добавление/удаление слов в словарь
+@stop
 
 
-</head>
-<body>
-<div class="flex-center position-ref full-height">
-    @if (Route::has('login'))
-        <div class="top-right links">
-            @auth
-                <a href="{{ url('/home') }}">Главная</a>
-
-            @else
-                <a href="{{ route('login') }}">Вход</a>
-                <a href="{{ route('register') }}">Регистрация</a>
-            @endauth
-        </div>
-    @endif
-
-    <div class="content">
-
-
-        <h1>Редактирование слова /
-            Sanan muokkaus</h1>
+@section('content')
 
 
 
-        <div class="addword">
+            <div class="row">
+                <div class="col s12">
+                    <h5 style="padding-top: 40px;">Редактирование слова / Sanan muokkaus</h5>
+                </div>
+            </div>
+
+
+
+
+            <div class="row">
             <form method="POST" action="/wordupdate">
 
                 {{csrf_field()}}
 
-
                 @foreach($words as $word)
 
-                <div class="form-row">
+
                     <input type="hidden" name="id[]" id="id" value="{{ $word->id }}">
-                    <div class="col-md-4">
+                    <div class="col s5 m5 l5">
                         <input type="text" name="word_suomi[]"  class="form-control" id="word_suomi" value="{{ $word->word_suomi }}" placeholder="Слово на финском" required>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col s5 m5 l5">
                         <input type="text" name="word_rus[]" class="form-control" id="word_rus" value="{{ $word->word_rus }}" placeholder="Слово на русском" required>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col s2 m2 l2">
                         <button type="submit" class="btn btn-primary mb-2">Обновить</button>
                     </div>
-                </div>
+
 
                 @endforeach
             </form>
-        </div>
+            </div>
 
-
-    </div>
-
-</div>
-
-
-</body>
-
-
-
-</html>
-
+@endsection

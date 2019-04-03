@@ -13,63 +13,84 @@
 
 
 <body>
-    <div id="app">
-        <h1 @click="tutorialDemoCounter">@{{headerH1}}</h1>
+    <div class="container">
+        <div id="app">
+            <h2 @click="tutorialDemoCounter">@{{headerH1}}</h2>
+            <br>
 
-        <form class="border m-2 p-4">
-            <div class="form-row">
-                <div class="form-group col-md-12">
-                    <div class="form-group">
-                        <input type="radio" name="type" v-model="typeJob" value="list" :checked="typeJob == 'list'">
-                        <input type="radio" name="type" v-model="typeJob" value="search" :checked="typeJob == 'search'">
-                    </div>
+            <nav>
+                <div class="nav nav-tabs" id="nav-tab" role="tablist">
 
-                    <div v-if="typeJob == 'search'" class="form-group">
-                        <label>Поиск @{{ search }}</label>
-                        <label v-if="search.length"> - кол-во символов @{{ search.length }} </label>
-                    </div>
+                    <a class="nav-item nav-link" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab"
+                       aria-controls="nav-home" aria-selected="true">Словарь</a>
 
-                    <div v-if="typeJob == 'search'" class="form-group">
-                        <input type="text" class="form-control" name="search" v-model="search" placeholder="Что ищем?">
-                    </div>
-
-
-                    <!-- Search words in the dictionary -->
-
-                    <div class="form-group col-md-6">
-                        <div class="jumbotron">
-                            <div v-if="typeJob == 'search'" class="form-check" v-for="hashtag in hashtags.test">
-                                <label class="form-check-label">
-                                    <input type="checkbox" class="form-check-input" v-model="checkPick" :value="hashtag">
-                                    @{{ hashtag.word_rus }} : @{{ hashtag.word_suomi }}
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-
-
-
-                    <!-- Conclusion of words falling into the user dictionary -->
-
-                    <div class="form-group col-md-6">
-                        <h5>Слова которые будут добавлены в словарь</h5>
-                        <div class="jumbotron">
-                            <div v-if="typeJob == 'search'" class="form-check" v-for="chek in checkPick">
-                                <label class="form-check-label">
-                                    @{{ chek.word_rus }} : @{{ chek.word_suomi }}
-                                </label>
-                            </div>
-                        </div>
-                        <button type="button" class="btn btn-primary" @click="addToUserVocabulary">Добавить в мой словарь</button>
-                    </div>
-
-
+                    <a class="nav-item nav-link active" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab"
+                       aria-controls="nav-profile" aria-selected="false">Поиск и добавление слов для изучения</a>
 
                 </div>
+            </nav>
+
+            <div class="tab-content" id="nav-tabContent">
+                <div class="tab-pane fade" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                            фывфывфыв
+                </div>
+
+
+
+                <div class="tab-pane fade show active" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
+
+
+                            <div v-if="typeJob == 'search'" class="form-group" style="padding-top: 30px">
+                                <input type="text" class="form-control" name="search" v-model="search" placeholder="Какое слово ищем?">
+                            </div>
+
+                            <!--
+                            <div v-if="typeJob == 'search'" class="form-group">
+                                <label>Поиск @{{ search }}</label>
+                                <label v-if="search.length"> - кол-во символов @{{ search.length }} </label>
+                            </div>
+                            -->
+                        </div>
+
+
+
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <div class="col-sm-12">
+                                    <h5 style="height: 70px">Отметьте слова, которые хотите добавить к изучению</h5>
+                                </div>
+                                <div class="jumbotron">
+                                    <div v-if="typeJob == 'search'" class="form-check" v-for="hashtag in hashtags.searchwords">
+                                        <label class="form-check-label">
+                                            <input type="checkbox" class="form-check-input" v-model="checkPick" :value="hashtag">
+                                            @{{ hashtag.word_rus }} : @{{ hashtag.word_suomi }}
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Conclusion of words falling into the user dictionary -->
+
+                            <div class="form-group col-md-6">
+                                <div class="col-sm-12">
+                                    <h5 style="height: 70px">Слова которые будут добавлены в ваш словарь</h5>
+                                </div>
+                                <div class="jumbotron">
+                                    <div v-if="typeJob == 'search'" class="form-check" v-for="chek, key in checkPick" v-model="tutorialDemoCounter">
+                                        <label class="form-check-label">
+                                           @{{ ++key }}. @{{ chek.word_rus }} : @{{ chek.word_suomi }}
+                                        </label>
+                                    </div>
+                                </div>
+                                <button type="button" class="btn btn-primary" @click="addToUserVocabulary">Добавить в мой словарь</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </form>
-
-
+        </div>
     </div>
 </body>
 
@@ -85,9 +106,10 @@
 
     data: {
             message: 'Привет, Vue!',
+            wordСounter: 1,
             counter: 0,
             typeJob: 'search',
-            headerH1: 'Blah',
+            headerH1: 'Поиск и добавление слов в пользовательский словарь',
             search: '',
             hashtags: [],
             checkPick: [],
@@ -102,17 +124,11 @@
     methods: {
             tutorialDemoCounter: function () {
                 this.counter++;
-                if (this.counter == 1) {
-                    this.headerH1 = 'Test 1'
-                }
-                else {
-                    this.headerH1 = 'Test' + this.counter
-                }
             },
 
             lookupHashtag: function () {
                 $.ajax({
-                    url: 'http://suomi.ru/test/',
+                    url: 'http://suomi.ru/searchwords/',
                     dataType: 'json',
                     data: {word_rus : app.search},
                     success: function ( json ) {

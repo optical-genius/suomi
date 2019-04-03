@@ -15,34 +15,28 @@
 
 @section('content')
 
-    <style>
-
-        .row{
-            text-align: -webkit-center;
-        }
-
-        .trainword table {
-            max-width: 600px;
-        }
-
-    </style>
 
 
-<div class="content">
+
+
    <div class="row">
-       <div class="col-sm">
-                    <h1 style="padding-top: 40px;">Удаление уроков / редактирование уроков</h1>
+
+       <div class="col s12">
+           <h5 style="padding-top: 40px;">Добавьте урок и привяжите к нему слова по тематике</h5>
        </div>
 
-        <div class="col-sm">
-            <div class="trainword">
+        <div class="col s12">
+
+
                                 <?php $table_id = 1; ?>
 
-                                <table class="table">
+                                <table class="striped">
                                     <thead>
                                         <tr>
                                             <th>#</th>
                                             <th>Уроки которые вы добавили</th>
+                                            <th></th>
+                                            <th></th>
                                         </tr>
                                     </thead>
 
@@ -58,9 +52,9 @@
                                     </tbody>
                                 </table>
             </div>
-        </div>
+
     </div>
-</div>
+
 
 
 @endsection

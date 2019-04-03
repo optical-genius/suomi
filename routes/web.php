@@ -59,9 +59,8 @@ Route::group(['middleware' => 'auth'], function () {
         return view('jstestview');
     });
 
-    //Route::get('/test', 'WordController@test');
-    Route::get('/test', 'VocabularyController@test');
 
+    Route::get('/searchwords', 'VocabularyController@searchwords');
     Route::get('addword', 'WordController@addFromBigVocabulary');
 
 });

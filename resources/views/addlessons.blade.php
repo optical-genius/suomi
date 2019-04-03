@@ -16,26 +16,25 @@
 
 @section('content')
 
-
-
-    <div class="content">
         <div class="row">
-            <div class="col-sm">
-
-                <h1 style="padding-top: 40px;">Добавьте урок и привяжите к нему слова по тематике</h1>
+            <div class="col s12">
+                <h5 style="padding-top: 40px;">Добавьте урок и привяжите к нему слова по тематике</h5>
             </div>
+        </div>
 
 
-                <div class="col-sm">
+        <div class="row">
+
+                <div class="col s12">
 
                              <form method="POST" action="/insertlessons">
                                  {{csrf_field()}}
-                                 <div class="trainword">
-                                     <div class="col-md-3"></div>
-                                     <div class="col-md-6">
+
+
+                                     <div class="col s12">
                                          <input type="text" class="form-control" id="lesson_name" name="lesson_name" placeholder="Название урока / темы" required autofocus>
                                      </div>
-                                     <div class="col-md-3"></div>
+
 
                                      <?php $table_id = 1; ?>
 
@@ -55,23 +54,28 @@
                                                  <th scope="row">{{ $table_id++ }}</th>
                                                  <td>{{ $word->word_suomi }}</td>
                                                  <td>{{ $word->word_rus }}</td>
-                                                 <td><input type="checkbox" id="id[]" name="words_id[]" value="{{ $word->id }}"></td>
+                                                 <td>
+                                                 <label>
+                                                     <input type="checkbox" id="id[]" name="words_id[]" value="{{ $word->id }}">
+                                                     <span></span>
+                                                 </label>
+                                                 </td>
                                              </tr>
                                          @endforeach
                                          </tbody>
                                      </table>
-                                     <div class="col-md-4"></div>
-                                         <div class="col-md-4">
-                                             <button type="submit" class="btn btn-primary mb-2">Добавить</button>
+                                     <div class="col s10"></div>
+                                         <div class="col s2">
+                                             <button type="submit" class="btn btn-primary mb-2" style="margin-top: 30px; margin-bottom: 30px">Добавить</button>
                                          </div>
-                                     <div class="col-md-4"></div>
 
-                                 </div>
+
+
                              </form>
                 </div>
 
         </div>
-    </div>
+
 
 
 

@@ -10,98 +10,182 @@
 
     <title>@yield('title')</title>
 
-    <!-- Styles -->
-    <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
-    <link href="{{ asset('../public/css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('../public/css/style.css') }}" rel="stylesheet">
 
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <script src="{{ asset('js/app.js') }}"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    <script>
+        $(document).ready(function(){
+            $('.sidenav').sidenav();
+            $(".dropdown-trigger").dropdown();
+        });
+    </script>
+
+
+
+
     <style>
-
-        .content .row{
-            text-align: -webkit-center;
+        [type="checkbox"]+span:not(.lever) {
+            position: relative;
+            padding-left: 35px;
+            cursor: pointer;
+            display: inline-block;
+            height: 17px;
+            line-height: 18px;
+            font-size: 1rem;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
         }
 
-        .trainword table {
-            max-width: 600px;
+        .pagination li {
+            display: inline-block;
+            border-radius: 2px;
+            text-align: center;
+            vertical-align: top;
+            height: 30px;
+            width: 30px;
         }
 
-
-
+        .pagination li a {
+            color: #444;
+            display: inline-block;
+            font-size: 1rem;
+            padding: 0 10px;
+            line-height: 30px;
+        }
     </style>
+
 </head>
 <body>
 
-        <nav class="navbar navbar-default navbar-static-top">
-            <div class="container">
-                <div class="navbar-header">
 
-                    <!-- Collapsed Hamburger -->
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse" aria-expanded="false">
-                        <span class="sr-only">Toggle Navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
 
-                    <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                       Учим финский язык
-                    </a>
-                </div>
+<nav>
+    <div class="nav-wrapper">
+        <div class="container">
+            <a href="/word" class="brand-logo"><img width="200px" src="/public/img/logo.svg"></img></a>
+        </div>
+        <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+        <div class="container">
+            <ul class="right hide-on-med-and-down">
+                @auth
 
-                <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="nav navbar-nav">
-                        &nbsp;
-                    </ul>
 
-                    <!-- Right Side Of Navbar -->
-                    <ul class="nav navbar-nav navbar-right">
-                        <!-- Authentication Links -->
-                                @auth
+                    <li>
+                        <a href="{{ url('/vocabulary') }}">Словарь</a>
+                    </li>
 
-                                    <li>
-                                        <a href="{{ url('/word') }}">Мои слова (мой словарь)</a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ url('/addlessons') }}">Добавить урок (слова по тематике)</a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ url('/lessons') }}">Все уроки</a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ url('/suomitrain') }}">Тренировка с финского</a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ url('/randomsuomi') }}">10 случайных финских слов</a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ url('/russiantrain') }}">Тренировка с русского</a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ url('/randomrussian') }}">10 случайных русских слов</a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ url('/vocabulary') }}">Словарь</a>
-                                    </li>
+                    <li>
+                        <a class="dropdown-trigger" href="#!" data-target="dropdown3">Грамматика<i class="material-icons right">arrow_drop_down</i></a>
+                    </li>
 
-                                @else
-                                    <li>
-                                        <a href="{{ route('login') }}">Вход</a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ route('register') }}">Регистрация</a>
-                                    </li>
-                                @endauth
-                    </ul>
-                </div>
-            </div>
-        </nav>
-<div class="content" style="min-width: 500px">
+                    <li>
+                        <a class="dropdown-trigger" href="#!" data-target="dropdown1">Тренировка с финского<i class="material-icons right">arrow_drop_down</i></a>
+                    </li>
+
+                    <li>
+                        <a class="dropdown-trigger" href="#!" data-target="dropdown2">Тренировка с русского<i class="material-icons right">arrow_drop_down</i></a>
+                    </li>
+                @else
+                    <li>
+                        <a href="{{ route('login') }}">Вход</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('register') }}">Регистрация</a>
+                    </li>
+                @endauth
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<ul class="sidenav" id="mobile-demo">
+    @auth
+
+        <li>
+            <a href="{{ url('/word') }}">Мои слова (мой словарь)</a>
+        </li>
+        <li>
+            <a href="{{ url('/addlessons') }}">Добавить урок (слова по тематике)</a>
+        </li>
+        <li>
+            <a href="{{ url('/lessons') }}">Все уроки</a>
+        </li>
+        <li>
+            <a href="{{ url('/suomitrain') }}">Тренировка с финского</a>
+        </li>
+        <li>
+            <a href="{{ url('/randomsuomi') }}">10 случайных финских слов</a>
+        </li>
+        <li>
+            <a href="{{ url('/russiantrain') }}">Тренировка с русского</a>
+        </li>
+        <li>
+            <a href="{{ url('/randomrussian') }}">10 случайных русских слов</a>
+        </li>
+        <li>
+            <a href="{{ url('/vocabulary') }}">Словарь</a>
+        </li>
+    @else
+        <li>
+            <a href="{{ route('login') }}">Вход</a>
+        </li>
+        <li>
+            <a href="{{ route('register') }}">Регистрация</a>
+        </li>
+    @endauth
+</ul>
+
+<ul id="dropdown1" class="dropdown-content">
+    <li>
+        <a href="{{ url('/suomitrain') }}">Тренировка с финского</a>
+    </li>
+    <li>
+        <a href="{{ url('/randomsuomi') }}">10 случайных финских слов</a>
+    </li>
+</ul>
+
+<ul id="dropdown2" class="dropdown-content">
+    <li>
+        <a href="{{ url('/russiantrain') }}">Тренировка с русского</a>
+    </li>
+    <li>
+        <a href="{{ url('/randomrussian') }}">10 случайных русских слов</a>
+    </li>
+</ul>
+
+<ul id="dropdown3" class="dropdown-content">
+    <li>
+        <a href="{{ url('/word') }}">Мои слова (мой словарь)</a>
+    </li>
+    <li>
+        <a href="{{ url('/addlessons') }}">Добавить урок (слова по тематике)</a>
+    </li>
+    <li>
+        <a href="{{ url('/lessons') }}">Все уроки</a>
+    </li>
+</ul>
+
+
+
+
+
+<div class="container">
         @yield('content')
 </div>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
+
 </body>
 </html>

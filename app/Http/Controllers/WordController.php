@@ -39,7 +39,6 @@ class WordController extends Controller
      */
     public function store(Request $request)
     {
-        //dd(request(['word_rus']));
         $word = new Word();
         $word->user_id = auth()->user()->id;
         $word->word_suomi = $request->input('word_suomi')['0'];
@@ -63,6 +62,10 @@ class WordController extends Controller
     }
 
 
+    /**
+     * Get all finish words from user vocabulary from training
+     * Получаем все финские слова из пользовательского словаря для тренировки
+     */
     public function suomitrain()
     {
         // Get ID authenticated user
@@ -71,6 +74,11 @@ class WordController extends Controller
         return view('suomitrain', compact('words'));
     }
 
+
+    /**
+     * Get all russian words from user vocabulary from training
+     * Получаем все русские слова из пользовательского словаря для тренировки
+     */
     public function russiantrain()
     {
         // Get ID authenticated user
@@ -79,6 +87,11 @@ class WordController extends Controller
         return view('russiantrain', compact('words'));
     }
 
+
+    /**
+     * Practice 10 russian random words.
+     * Получаем 10 случайных финских слов для тренировки
+     */
     public function randomsuomi()
     {
         // Get ID authenticated user
@@ -87,6 +100,11 @@ class WordController extends Controller
         return view('randomsuomi', compact('words'));
     }
 
+
+    /**
+     * Practice 10 russian random words.\
+     * Получаем 10 случайных русских слов для тренировки
+     */
     public function randomrussian()
     {
         // Get ID authenticated user
@@ -97,6 +115,7 @@ class WordController extends Controller
 
     /**
      * Show the form for editing the specified resource.
+     * Редактирование ресурса
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -104,6 +123,7 @@ class WordController extends Controller
     public function edit($id)
 
     {
+        // Get ID authenticated user
         $user_id = Auth::id();
         $words = Word::all()->where('user_id', $user_id)->where('id', $id);
         return view('wordedit', compact('words'));
@@ -111,6 +131,7 @@ class WordController extends Controller
 
     /**
      * Update the specified resource in storage.
+     * Обновление записи
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
@@ -128,6 +149,7 @@ class WordController extends Controller
 
     /**
      * Remove the specified resource from storage.
+     * Удаление одной записи
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -139,49 +161,36 @@ class WordController extends Controller
         return redirect('/word');
     }
 
+
+    /**
+     * Mass delete words
+     * Массовое удаление слов
+     */
+
     public function massdelete(Input $input)
     {
         $worddelemass = Input::all();
         foreach ($worddelemass as $worddel) {
             Word::where('id', $worddel)->delete();
-
         }
         return redirect('/word');
     }
 
 
+    /**
+     * Adding words from a large dictionary to the user's dictionary
+     * Добавляем слова из большого словаря в пользовательский словарь
+     */
+
     public function addFromBigVocabulary (Request $request)
     {
-
         $input = Input::get('data');
 
-
-
         foreach ($input as $item) {
-           // echo $item['word_suomi'] . '<br>';
             $user_id = Auth::id();
             $word = Word::updateOrCreate(array('user_id' => $user_id, 'word_rus' => $item['word_rus'], 'word_suomi' => $item['word_suomi']));
             $word->save();
-           
         }
-
-
-       // $addWordFromVocabulary = Input::get('data');
-
-      //  foreach ($addWordFromVocabulary as $item) {
-
-        //        $words = Word::firstOrCreate(array('word_rus' => $item['word_rus'], 'word_suomi' => $item['word_suomi']));
-                //$words->user_id = auth()->user()->id;
-              //  $words->word_suomi = $item['word_suomi'];
-                //$words->word_rus = $item['word_rus'];
-
-          //  dd($words);
-            //    $words->save();
-              //  return response()->json(['ok' => 'ok']);
-
-
-        //}
-
     }
 
 

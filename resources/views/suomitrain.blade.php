@@ -15,15 +15,23 @@
 
 @section('content')
 
-        <div class="flex-center position-ref full-height">
 
 
-        <div class="content">
-            <h1 style="padding-top: 40px;">Если не знаете ответ - наведите на слово |<br/> Jos et tiedä vastausta, siirrä sana</h1>
 
-            <div class="trainword">
+
+
+        <div class="row">
+            <div class="col s2"></div>
+            <div class="col s8">
+
+                <div class="row">
+                    <div class="col s12">
+                        <h5 style="padding-top: 40px;">Если не знаете ответ - наведите на слово | Jos et tiedä vastausta, siirrä sana</h5>
+                    </div>
+                </div>
+
                 <?php $table_id = 1; ?>
-                    <table class="table">
+                    <table class="striped">
                         <thead>
                             <tr>
                                 <th>#</th>
@@ -41,6 +49,7 @@
                         </tbody>
                     </table>
             </div>
-
+            <div class="col s2"></div>
+        </div>
 
 @endsection

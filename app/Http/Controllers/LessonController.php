@@ -17,7 +17,6 @@ class LessonController extends Controller
      */
     public function index()
     {
-        //
         $user_id = Auth::id();
         $words = Word::all()->where('user_id', $user_id);
         return view('addlessons', compact('words'));
@@ -32,6 +31,8 @@ class LessonController extends Controller
     {
 
     }
+
+
 
     /**
      * Store a newly created resource in storage.
@@ -50,6 +51,7 @@ class LessonController extends Controller
         return redirect('/addlessons');
     }
 
+
     /**
      * Display the specified resource.
      *
@@ -58,7 +60,6 @@ class LessonController extends Controller
      */
     public function show($id)
     {
-        //
         $user_id = Auth::id();
         $lessons = Lesson::findOrFail($id);
         $lessons = Lesson::all()->where('id', $id)->first();
@@ -77,7 +78,6 @@ class LessonController extends Controller
      */
     public function grammar($id)
     {
-        //
         $user_id = Auth::id();
         $lessons = Lesson::findOrFail($id);
         $lessons = Lesson::all()->where('id', $id)->first();
@@ -118,8 +118,6 @@ class LessonController extends Controller
      */
     public function destroy($id)
     {
-        //
-
         $lessons = Lesson::findOrFail($id);
         $lessons->delete();
         return redirect('/lessons');

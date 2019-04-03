@@ -15,16 +15,21 @@
 @section('content')
 
 
-    <div class="content">
-        <div class="row">
-            <div class="col-sm">
-                <h1 style="padding-top: 40px;">10 случайных слов</h1>
-            </div>
 
-            <div class="col-sm">
-                <div class="trainword">
+
+
+        <div class="row">
+            <div class="col s2"></div>
+            <div class="col s8">
+
+                <div class="row">
+                    <div class="col s12">
+                        <h5 style="padding-top: 40px;">10 случайных русских слов</h5>
+                    </div>
+                </div>
+
                     <?php $table_id = 1; ?>
-                        <table class="table">
+                        <table class="striped">
                             <thead>
                                 <tr>
                                     <th>#</th>
@@ -41,9 +46,11 @@
                                 @endforeach
                             </tbody>
                         </table>
-                        <a href="/randomrussian"><button type="submit" class="btn btn-primary mb-2">Еще слова...</button></a>
+                        <a href="/randomrussian"><button type="submit" class="btn btn-primary mb-2" style="margin-top: 30px; margin-bottom: 30px">Еще слова...</button></a>
+
                 </div>
-            </div>
+            <div class="col s2"></div>
         </div>
+
 
 @endsection
