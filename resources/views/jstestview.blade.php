@@ -1,51 +1,44 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <meta name="csrf-token" content="{{ csrf_token() }}" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-</head>
+@extends('layouts.app')
+@section('title')
+    Поиск и добавление слов из большого словаря
+@stop
 
 
+@section('content')
 
-<body>
-    <div class="container">
-        <div id="app">
-            <h2 @click="tutorialDemoCounter">@{{headerH1}}</h2>
-            <br>
-
-            <nav>
-                <div class="nav nav-tabs" id="nav-tab" role="tablist">
-
-                    <a class="nav-item nav-link" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab"
-                       aria-controls="nav-home" aria-selected="true">Словарь</a>
-
-                    <a class="nav-item nav-link active" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab"
-                       aria-controls="nav-profile" aria-selected="false">Поиск и добавление слов для изучения</a>
-
+    <div id="app">
+             <div class="row">
+                <div class="col s12">
+                    <h5 style="margin-top: 50px" @click="tutorialDemoCounter">@{{headerH1}}</h5>
                 </div>
-            </nav>
+             </div>
 
-            <div class="tab-content" id="nav-tabContent">
-                <div class="tab-pane fade" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-                            фывфывфыв
+
+            <div class="row">
+                <div class="col s12">
+                    <ul class="tabs">
+                        <li class="tab col s3"><a href="#test1">Словарь</a></li>
+                        <li class="tab col s3"><a class="active" href="#test2">Поиск и добавление слов</a></li>
+                    </ul>
                 </div>
 
 
 
-                <div class="tab-pane fade show active" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                <div id="test1" class="col s12">Test 1</div>
+
+                <div id="test2" class="col s12">
+
+                    <div class="col s12">
+                        <p>Словарь содержит более 4 000 слов. Поиск можно производить как на русском, так и на финском языке. Слова которые вам интересны для изучения
+                            можно добавить в ваш личный словарь для дальнейего изучения. Начните вводить слово и отмечайте галочкой нужные вам слова. Затем нажмите кнопку
+                            "Добавить в мой словарь"</p>
+                    </div>
+
                     <div class="form-row">
-                        <div class="form-group col-md-12">
-
-
+                        <div class="form-group col s12">
                             <div v-if="typeJob == 'search'" class="form-group" style="padding-top: 30px">
                                 <input type="text" class="form-control" name="search" v-model="search" placeholder="Какое слово ищем?">
                             </div>
-
                             <!--
                             <div v-if="typeJob == 'search'" class="form-group">
                                 <label>Поиск @{{ search }}</label>
@@ -54,50 +47,44 @@
                             -->
                         </div>
 
-
-
                         <div class="form-row">
-                            <div class="form-group col-md-6">
-                                <div class="col-sm-12">
-                                    <h5 style="height: 70px">Отметьте слова, которые хотите добавить к изучению</h5>
+                            <div class="form-group col s12 m6 l6">
+                                <div class="col s12">
+                                    <h5 style="margin-top: 30px; margin-bottom: 30px">Отметьте слова, которые хотите добавить к изучению</h5>
                                 </div>
-                                <div class="jumbotron">
-                                    <div v-if="typeJob == 'search'" class="form-check" v-for="hashtag in hashtags.searchwords">
-                                        <label class="form-check-label">
-                                            <input type="checkbox" class="form-check-input" v-model="checkPick" :value="hashtag">
-                                            @{{ hashtag.word_rus }} : @{{ hashtag.word_suomi }}
-                                        </label>
-                                    </div>
+
+                                <div v-if="typeJob == 'search'" class="form-check" v-for="hashtag in hashtags.searchwords">
+                                    <label class="form-check-label">
+                                        <input type="checkbox" class="form-check-input" v-model="checkPick" :value="hashtag">
+                                        <span></span>
+                                        @{{ hashtag.word_rus }} : @{{ hashtag.word_suomi }}
+                                    </label>
                                 </div>
+
                             </div>
 
                             <!-- Conclusion of words falling into the user dictionary -->
 
-                            <div class="form-group col-md-6">
-                                <div class="col-sm-12">
-                                    <h5 style="height: 70px">Слова которые будут добавлены в ваш словарь</h5>
+                            <div class="form-group col s12 m6 l6">
+                                <div class="col s12">
+                                    <h5 style="margin-top: 30px; margin-bottom: 30px">Слова которые будут добавлены в ваш словарь</h5>
                                 </div>
-                                <div class="jumbotron">
-                                    <div v-if="typeJob == 'search'" class="form-check" v-for="chek, key in checkPick" v-model="tutorialDemoCounter">
-                                        <label class="form-check-label">
-                                           @{{ ++key }}. @{{ chek.word_rus }} : @{{ chek.word_suomi }}
-                                        </label>
-                                    </div>
+
+                                <div v-if="typeJob == 'search'" class="form-check" v-for="chek, key in checkPick" v-model="tutorialDemoCounter">
+                                    <label class="form-check-label">
+                                        @{{ ++key }}. @{{ chek.word_rus }} : @{{ chek.word_suomi }}
+                                    </label>
                                 </div>
-                                <button type="button" class="btn btn-primary" @click="addToUserVocabulary">Добавить в мой словарь</button>
+
+                                <button style="margin-top: 30px; margin-bottom: 30px" type="button" class="btn btn-primary" @click="addToUserVocabulary">Добавить в мой словарь</button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-</body>
 
-<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    </div>
+
 
 <script>
     var app = new Vue({
@@ -165,4 +152,6 @@
 
     })
 </script>
-</html>
+
+
+@endsection

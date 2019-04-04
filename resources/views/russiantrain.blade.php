@@ -18,8 +18,8 @@
 
 
     <div class="row">
-        <div class="col s2"></div>
-        <div class="col s8">
+        <div class="col s1 m2 l2"></div>
+        <div class="col s10 m8 l8">
 
             <div class="row">
                 <div class="col s12">
@@ -46,6 +46,6 @@
                 </tbody>
             </table>
         </div>
-        <div class="col s2"></div>
+        <div class="col s1 m2 l2"></div>
     </div>
 @endsection

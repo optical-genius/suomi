@@ -19,8 +19,8 @@
 
 
         <div class="row">
-            <div class="col s2"></div>
-            <div class="col s8">
+            <div class="col s1 m2 l2"></div>
+            <div class="col s10 m8 l8">
 
                 <div class="row">
                     <div class="col s12">
@@ -49,7 +49,7 @@
                         <a href="/randomrussian"><button type="submit" class="btn btn-primary mb-2" style="margin-top: 30px; margin-bottom: 30px">Еще слова...</button></a>
 
                 </div>
-            <div class="col s2"></div>
+            <div class="col s1 m2 l2"></div>
         </div>
 
 

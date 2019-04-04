@@ -45,15 +45,15 @@
                  <form method="POST" action="/wordadd" class="col s12">
                      {{csrf_field()}}
 
-                         <div class="input-field col s5 m5 l5">
+                         <div class="input-field col s12 m5 l5">
                              <input type="text" name="word_suomi[]"  class="form-control" id="word_suomi" placeholder="Слово на финском" required autofocus>
                          </div>
 
-                         <div class="input-field col s5 m5 l5">
+                         <div class="input-field col s12 m5 l5">
                              <input type="text" name="word_rus[]" class="form-control" id="word_rus" placeholder="Слово на русском" required>
                          </div>
 
-                         <div class="input-field col s2 m2 l2">
+                         <div class="input-field col s12 m2 l2">
                              <button type="submit" class="btn btn-primary mb-2">Добавить</button>
                          </div>
                  </form>
@@ -96,15 +96,16 @@
                                 </table>
 
                                 <div class="row" style="padding-top: 20px">
-                                    <div class="col s8"></div>
-                                    <div class="col s2"> </div>
-                                    <div class="col s2">
+                                    <div class="col s2 m6 l6"></div>
+                                    <div class="col s5 m4 l4">
+                                        <button type="submit" class="btn btn-primary mb-2" style="margin-top: 20px">Удалить</button>
+                                    </div>
+                                    <div class="col s5 m2 l2">
                                         <label>
                                             <input type="checkbox" name="cb_all" >Отметить все
                                             <span></span>
                                         </label>
 
-                                        <button type="submit" class="btn btn-primary mb-2" style="margin-top: 20px">Удалить</button>
                                     </div>
                                 </div>
                             </div>

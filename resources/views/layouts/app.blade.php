@@ -27,6 +27,7 @@
         $(document).ready(function(){
             $('.sidenav').sidenav();
             $(".dropdown-trigger").dropdown();
+            $('.tabs').tabs();
         });
     </script>
 
@@ -83,7 +84,7 @@
 
 
                     <li>
-                        <a href="{{ url('/vocabulary') }}">Словарь</a>
+                        <a class="dropdown-trigger" href="#!" data-target="dropdown4">Словарь<i class="material-icons right">arrow_drop_down</i></a>
                     </li>
 
                     <li>
@@ -137,6 +138,9 @@
         <li>
             <a href="{{ url('/vocabulary') }}">Словарь</a>
         </li>
+        <li>
+            <a href="{{ url('/jstest') }}">Поиск и добавление слов в мой словарь (тестовая функция)</a>
+        </li>
     @else
         <li>
             <a href="{{ route('login') }}">Вход</a>
@@ -177,6 +181,14 @@
     </li>
 </ul>
 
+<ul id="dropdown4" class="dropdown-content">
+    <li>
+        <a href="{{ url('/vocabulary') }}">Словарь</a>
+    </li>
+    <li>
+        <a href="{{ url('/jstest') }}">Поиск и добавление слов в мой словарь (тестовая функция)</a>
+    </li>
+</ul>
 
 
 
