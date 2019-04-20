@@ -46,13 +46,13 @@
 
 
                     <input type="hidden" name="id[]" id="id" value="{{ $word->id }}">
-                    <div class="col s5 m5 l5">
+                    <div class="col s12 m5 l5">
                         <input type="text" name="word_suomi[]"  class="form-control" id="word_suomi" value="{{ $word->word_suomi }}" placeholder="Слово на финском" required>
                     </div>
-                    <div class="col s5 m5 l5">
+                    <div class="col s12 m5 l5">
                         <input type="text" name="word_rus[]" class="form-control" id="word_rus" value="{{ $word->word_rus }}" placeholder="Слово на русском" required>
                     </div>
-                    <div class="col s2 m2 l2">
+                    <div class="col s12 m2 l2">
                         <button type="submit" class="btn btn-primary mb-2">Обновить</button>
                     </div>
 

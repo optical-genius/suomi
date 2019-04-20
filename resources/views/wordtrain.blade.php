@@ -66,7 +66,7 @@
                              <div class="trainword">
 
                                 <?php $table_id = 1; ?>
-                                <table class="table">
+                                <table class="striped">
                                     <thead>
                                         <tr>
                                             <th>#</th>

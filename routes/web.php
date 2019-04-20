@@ -45,6 +45,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('lessons/grammar/{id}', 'LessonController@grammar');
     Route::get('lessons', 'LessonController@all_lessons');
     Route::get('deletelessons/{id}', 'LessonController@destroy');
+    Route::get('lessons/edit/{id}', 'LessonController@edit');
+    Route::get('add-word-in-vocabulary/{lessonsid}/{id}', 'LessonController@add_word_in_vocabulary');
+    Route::post('deleteword', 'LessonController@deleteword');
+    Route::get('add-word-to-lesson', 'LessonController@add_word_to_lesson');
 
 
     //VocabularyController routes

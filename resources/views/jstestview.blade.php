@@ -70,7 +70,7 @@
                                     <h5 style="margin-top: 30px; margin-bottom: 30px">Слова которые будут добавлены в ваш словарь</h5>
                                 </div>
 
-                                <div v-if="typeJob == 'search'" class="form-check" v-for="chek, key in checkPick" v-model="tutorialDemoCounter">
+                                <div v-if="typeJob == 'search'" class="form-check" v-for="chek, key in checkPick">
                                     <label class="form-check-label">
                                         @{{ ++key }}. @{{ chek.word_rus }} : @{{ chek.word_suomi }}
                                     </label>
@@ -115,7 +115,7 @@
 
             lookupHashtag: function () {
                 $.ajax({
-                    url: 'http://suomi.ru/searchwords/',
+                    url: '/searchwords/',
                     dataType: 'json',
                     data: {word_rus : app.search},
                     success: function ( json ) {
@@ -133,7 +133,7 @@
                 });
 
                 $.ajax({
-                    url: 'http://suomi.ru/addword',
+                    url: '/addword',
                     type: 'GET',
                     dataType: 'json',
                     data: {data : app.checkPick},

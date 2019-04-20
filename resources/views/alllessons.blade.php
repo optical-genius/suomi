@@ -46,6 +46,7 @@
                                                     <th scope="row">{{ $table_id++ }}</th>
                                                     <td><a href="/lessons/{{ $lesson->id }}">{{ $lesson->name }}</a></td>
                                                     <td><a href="/lessons/grammar/{{ $lesson->id }}">Грамматика</a></td>
+                                                    <td><a href="/lessons/edit/{{ $lesson->id }}">Редактировать</a></td>
                                                     <td><a href="/deletelessons/{{ $lesson->id }}">Удалить</a></td>
                                                 </tr>
                                         @endforeach
