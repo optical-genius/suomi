@@ -179,7 +179,7 @@ class LessonController extends Controller
             $lessons->word_id = json_encode($lessonsDecode);
             $lessons->user_id = auth()->user()->id;
             $lessons->save();
-            return redirect('http://suomi.ru/lessons/edit/'.$lessonsid);
+            return redirect('lessons/edit/'.$lessonsid);
         }
     }
 
@@ -187,7 +187,7 @@ class LessonController extends Controller
     public function all_lessons()
     {
         $user_id = Auth::id();
-        $lessons = Lesson::all()->where('user_id', $user_id);
+        $lessons = Lesson::orderBy('name')->where('user_id', $user_id)->get();
         return view('alllessons', compact('lessons'));
     }
 

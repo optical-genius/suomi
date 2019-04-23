@@ -36,7 +36,23 @@ class VocabularyController extends Controller
             ->where('word_rus', 'like', '%' . $request['word_rus'] . '%')
             ->orWhere('word_suomi', 'like', '%' . $request['word_rus'] . '%')
             ->get();
-        return compact('searchwords');
+
+
+
+        if ($searchwords->first() == null){
+
+
+
+            $searchwords = array(
+                array('word_rus' => 'В словаре нет такого слова'),
+                );
+
+         return compact('searchwords');
+        }
+        else{
+            return compact('searchwords');
+        }
+
     }
 
 

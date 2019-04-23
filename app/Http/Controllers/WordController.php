@@ -96,8 +96,15 @@ class WordController extends Controller
     {
         // Get ID authenticated user
         $user_id = Auth::id();
-        $words = Word::all()->where('user_id', $user_id)->random(10);
-        return view('randomsuomi', compact('words'));
+        $words = Word::all()->where('user_id', $user_id);
+        if ($words->count() <= 10) {
+            $count_word = $words->count();
+            $words = Word::all()->where('user_id', $user_id)->random($count_word);
+            return view('randomsuomi', compact('words'));
+        } else {
+            $words = Word::all()->where('user_id', $user_id)->random(10);
+            return view('randomsuomi', compact('words'));
+        }
     }
 
 
@@ -108,9 +115,17 @@ class WordController extends Controller
     public function randomrussian()
     {
         // Get ID authenticated user
+
         $user_id = Auth::id();
-        $words = Word::all()->where('user_id', $user_id)->random(10);
-        return view('randomrussian', compact('words'));
+        $words = Word::all()->where('user_id', $user_id);
+        if ($words->count() <= 10) {
+            $count_word = $words->count();
+            $words = Word::all()->where('user_id', $user_id)->random($count_word);
+            return view('randomrussian', compact('words'));
+        } else {
+            $words = Word::all()->where('user_id', $user_id)->random(10);
+            return view('randomrussian', compact('words'));
+        }
     }
 
     /**

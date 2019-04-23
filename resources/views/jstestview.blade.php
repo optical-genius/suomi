@@ -55,7 +55,7 @@
 
                                 <div v-if="typeJob == 'search'" class="form-check" v-for="hashtag in hashtags.searchwords">
                                     <label class="form-check-label">
-                                        <input type="checkbox" class="form-check-input" v-model="checkPick" :value="hashtag">
+                                        <input type="checkbox" class="filled-in" v-model="checkPick" :value="hashtag">
                                         <span></span>
                                         @{{ hashtag.word_rus }} : @{{ hashtag.word_suomi }}
                                     </label>
@@ -120,7 +120,11 @@
                     data: {word_rus : app.search},
                     success: function ( json ) {
                         app.hashtags = json
-                    }
+                    },
+                    error: function (data)
+                    {
+                        console.log('Error:', data.responseText);
+                    },
                 });
             },
 
@@ -134,7 +138,7 @@
 
                 $.ajax({
                     url: '/addword',
-                    type: 'GET',
+                    type: 'POST',
                     dataType: 'json',
                     data: {data : app.checkPick},
                     success: function (data)

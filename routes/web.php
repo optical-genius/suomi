@@ -48,7 +48,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('lessons/edit/{id}', 'LessonController@edit');
     Route::get('add-word-in-vocabulary/{lessonsid}/{id}', 'LessonController@add_word_in_vocabulary');
     Route::post('deleteword', 'LessonController@deleteword');
-    Route::get('add-word-to-lesson', 'LessonController@add_word_to_lesson');
+    Route::post('add-word-to-lesson', 'LessonController@add_word_to_lesson');
 
 
     //VocabularyController routes
@@ -65,6 +65,6 @@ Route::group(['middleware' => 'auth'], function () {
 
 
     Route::get('/searchwords', 'VocabularyController@searchwords');
-    Route::get('addword', 'WordController@addFromBigVocabulary');
+    Route::post('addword', 'WordController@addFromBigVocabulary');
 
 });

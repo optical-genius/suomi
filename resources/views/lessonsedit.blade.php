@@ -180,7 +180,7 @@
 
                 $.ajax({
                     url: '/add-word-to-lesson',
-                    type: 'GET',
+                    type: 'POST',
                     dataType: 'json',
                     data: {data : app.checkPickAdd, id : app.idLessons},
                     success: function (data)
