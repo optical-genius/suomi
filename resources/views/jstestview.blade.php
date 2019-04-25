@@ -76,7 +76,9 @@
                                     </label>
                                 </div>
 
-                                <button style="margin-top: 30px; margin-bottom: 30px" type="button" class="btn btn-primary" @click="addToUserVocabulary">Добавить в мой словарь</button>
+                                <button style="margin-top: 30px; margin-bottom: 30px" type="button" class="btn btn-primary" @click="addToUserVocabulary" id="addToUserVocabulary">Добавить в мой словарь
+                                        <i id="test111" class="small material-icons" style="display: none; vertical-align: bottom;">beenhere</i>
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -144,11 +146,14 @@
                     success: function (data)
                     {
                         console.log(data);
+                        $("#addToUserVocabulary").html('Слова добавлены');
 
                     },
                     error: function (data)
                     {
                         console.log('Error:', data.responseText);
+                        $("#test111").css("display","").fadeIn(500).delay(1000).fadeOut(500);
+
                     },
                 });
             },
