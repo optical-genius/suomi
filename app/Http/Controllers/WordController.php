@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
+use App\Lesson;
 
 class WordController extends Controller
 {
@@ -30,6 +31,39 @@ class WordController extends Controller
     {
         //
     }
+
+
+    /**
+     * Добавляем слово в словарь
+     *
+     * Получаем последнее добавленное слово
+     *
+     * Добавляем последнее слово из словаря в урок
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function word_add_to_lessons_and_vocabulary(Request $request)
+    {
+
+        $word = new Word();
+        $word->user_id = auth()->user()->id;
+        $word->word_suomi = $request->input('word_suomi')['0'];
+        $word->word_rus = $request->input('word_rus')['0'];
+        $word->save();
+        $word = Word::get()->last();
+
+        $lessons = Lesson::find($request['id']);
+        $frominput = array("$word[id]");
+        $frombase = json_decode($lessons['word_id'], true);
+        $result = array_merge($frombase, $frominput);
+        $lessons->word_id = json_encode($result);
+        $lessons->user_id = auth()->user()->id;
+        $lessons->save();
+
+        return redirect()->back();
+    }
+
+
 
     /**
      * Store a newly created resource in storage.

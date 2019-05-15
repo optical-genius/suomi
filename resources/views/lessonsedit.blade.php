@@ -16,11 +16,42 @@
 @section('content')
 
 <div id="app">
+
+
+    <div class="row">
+        <div class="col s12">
+            <h5 style="padding-top: 40px;">Добавить словов в словарь и в урок - <b>{{ $lessons['name'] }}</b></h5>
+        </div>
+    </div>
+
+    <div class="row">
+        <form method="POST" action="/word-add-to-lessons-and-vocabulary/{{ $lessons['id'] }}" class="col s12">
+            {{csrf_field()}}
+
+
+
+            <div class="input-field col s12 m5 l5">
+                <input type="text" name="word_suomi[]"  class="form-control" id="word_suomi" placeholder="Слово на финском" required autofocus>
+            </div>
+
+            <div class="input-field col s12 m5 l5">
+                <input type="text" name="word_rus[]" class="form-control" id="word_rus" placeholder="Слово на русском" required>
+            </div>
+
+            <div class="input-field col s12 m2 l2">
+                <button type="submit" class="btn btn-primary mb-2">Добавить</button>
+            </div>
+        </form>
+    </div>
+
+
+
     <div class="row">
             <div class="col s12">
-                <h5 style="padding-top: 40px;">Удалить слова из урока - {{ $lessons['name'] }}</h5>
+                <h5 style="padding-top: 40px;">Удалить слова из урока - <b>{{ $lessons['name'] }}</b></h5>
             </div>
     </div>
+
 
 
 
@@ -72,7 +103,7 @@
 
     <div class="row">
         <div class="col s12">
-            <h5 style="padding-top: 40px;">Добавить к уроку новые слова</h5>
+            <h5 style="padding-top: 40px;">Добавить к уроку новые слова из моего словаря</h5>
         </div>
         <div class="col s12">
             <p>Эти слова есть в вашем словаре, но вы не добавляли их к уроку.</p>

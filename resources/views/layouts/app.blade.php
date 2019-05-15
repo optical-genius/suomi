@@ -10,7 +10,7 @@
 
     <title>@yield('title')</title>
 
-    <link href="{{ asset('../public/css/style.css') }}" rel="stylesheet">
+    <link href="{{ asset('/css/style.css') }}" rel="stylesheet">
 
     <!--Import Google Icon Font-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -75,7 +75,7 @@
 <nav>
     <div class="nav-wrapper">
         <div class="container">
-            <a href="/word" class="brand-logo"><img width="200px" src="/public/img/logo.svg"></img></a>
+            <a href="/word" class="brand-logo"><img width="200px" src="/img/logo.svg"></img></a>
         </div>
         <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
         <div class="container">

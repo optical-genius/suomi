@@ -36,6 +36,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('russiantrain', 'WordController@russiantrain');
     Route::get('randomsuomi', 'WordController@randomsuomi');
     Route::get('randomrussian', 'WordController@randomrussian');
+    Route::post('word-add-to-lessons-and-vocabulary/{id}', 'WordController@word_add_to_lessons_and_vocabulary');
 
 
     //LessonsController routes
