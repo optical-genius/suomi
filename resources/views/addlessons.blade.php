@@ -29,7 +29,7 @@
                     </div>
                 </div>
 
-                <form method="POST" action="/insertlessons">
+                <form method="POST" action="/insertlessons" id="frmText">
                     {{csrf_field()}}
 
                     <div class="row">
@@ -37,7 +37,7 @@
                             <input type="text" class="form-control" id="lesson_name" name="lesson_name" placeholder="Название урока / темы" required autofocus>
                         </div>
                         <div class="col s2">
-                            <button type="submit" class="btn btn-primary mb-2">Добавить</button>
+                            <button type="submit" class="btn btn-primary mb-2" id="btn" disabled="disabled">Добавить</button>
                         </div>
                     </div>
 
@@ -64,7 +64,7 @@
                                         <td>{{ $word->word_rus }}</td>
                                         <td>
                                             <label>
-                                                <input type="checkbox" id="id[]" name="words_id[]" value="{{ $word->id }}">
+                                                <input class="addlessonschekbox" type="checkbox" id="id[]" name="words_id[]" value="{{ $word->id }}">
                                                 <span></span>
                                             </label>
                                         </td>
@@ -96,6 +96,15 @@
 
 
 
-
+    <script>
+        $('.addlessonschekbox').click(function(){
+            var checked = $("#frmText input:checked").length > 0;
+            if (checked){
+                $('#btn').removeAttr('disabled');
+            } else {
+                $('#btn').attr('disabled', 'disabled');
+            }
+        });
+    </script>
 
 @endsection
