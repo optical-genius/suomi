@@ -68,4 +68,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/searchwords', 'VocabularyController@searchwords');
     Route::post('addword', 'WordController@addFromBigVocabulary');
 
+
+
 });

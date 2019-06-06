@@ -21,6 +21,9 @@
 
         $( document ).ready(function() {
 
+            var wrongAnswer = 0;
+            var wrightAnswer = 0;
+
             $( ".btn" ).click(function() {
                 var buttonid = $(this).attr('id');
 
@@ -29,12 +32,15 @@
                     var originalname = $(this).attr('name');
                     var splitoriginalname = originalname.split(', ');
                     if ( name == splitoriginalname[0] || name == splitoriginalname[1] ) {
-                        $( ".btn[id="+ buttonid +"]" ).css( {'backgroundColor' : '#30d13c', 'transition':'background-color 1000ms linear'});
+                        $( ".btn[id="+ buttonid +"]" ).css( {'backgroundColor' : '#30d13c', 'transition':'background-color 1000ms linear'}).prop('disabled', true).html("Верно");
+                        ++wrightAnswer;
+                        $( ".wrightAnswer" ).html( "<p>Правильных ответов: <b>" + wrightAnswer + "</b></p>" );
                     }
                     else {
-                        $( ".btn[id="+ buttonid +"]" ).css( {'backgroundColor' : '#d13037', 'transition':'background-color 1000ms linear'});
+                        $( ".btn[id="+ buttonid +"]" ).css( {'backgroundColor' : '#d13037', 'transition':'background-color 1000ms linear'}).prop('disabled', true).html("Неверно");
                         $(this).val($(this).attr('name'));
-
+                        ++wrongAnswer;
+                        $( ".wrongAnswer" ).html( "<p>Неправильных ответов: <b>" + wrongAnswer + "</b></p>" );
                     }
                 });
 
@@ -79,6 +85,15 @@
                 @endforeach
                 </tbody>
             </table>
+        </div>
+
+
+        <div class="col s6">
+            <div class="wrongAnswer"></div>
+        </div>
+
+        <div class="col s6">
+            <div class="wrightAnswer"></div>
         </div>
     </div>
 

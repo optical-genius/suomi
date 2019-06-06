@@ -50,6 +50,8 @@ class LessonController extends Controller
         $lessons->user_id = auth()->user()->id;
         $lessons->save();
         return redirect('/addlessons');
+
+
     }
 
 
@@ -96,6 +98,7 @@ class LessonController extends Controller
      */
     public function edit($id)
     {
+
         $lessons = Lesson::findOrFail($id);
         $lessons = Lesson::all()->where('id', $id)->first();
         $word_id = json_decode($lessons->word_id , true);
