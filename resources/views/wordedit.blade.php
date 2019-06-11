@@ -38,7 +38,7 @@
 
 
             <div class="row">
-            <form method="POST" action="/wordupdate">
+            <form method="POST" action="/wordupdate" enctype="multipart/form-data">
 
                 {{csrf_field()}}
 
@@ -52,10 +52,44 @@
                     <div class="col s12 m5 l5">
                         <input type="text" name="word_rus[]" class="form-control" id="word_rus" value="{{ $word->word_rus }}" placeholder="Слово на русском" required>
                     </div>
+
+                @if(count($word->img) == NULL)
+
+                    <div class="col s12 m12 l12">
+                        <div class="file-field input-field">
+                            <div class="btn">
+                                <span>Выберите картинку</span>
+                                <input type="file" name="select_file">
+                            </div>
+                            <div class="file-path-wrapper">
+                                <input class="file-path validate" type="text">
+                            </div>
+                        </div>
+                    </div>
+
+                @elseif(count($word->img)>0)
+
+                        <div class="col s12 m12 l12">
+                            <img src="/public/img/word/{{$word->img}}" alt="" style="width: 250px;">
+                        </div>
+
+                        <div class="col s12 m12 l12">
+                            <div class="file-field input-field">
+                                <div class="btn">
+                                    <span>Выбрать новую картинку</span>
+                                    <input type="file" name="select_file">
+                                </div>
+                                <div class="file-path-wrapper">
+                                    <input class="file-path validate" type="text">
+                                </div>
+                            </div>
+                        </div>
+
+                @endif
+
                     <div class="col s12 m2 l2">
                         <button type="submit" class="btn btn-primary mb-2">Обновить</button>
                     </div>
-
 
                 @endforeach
             </form>

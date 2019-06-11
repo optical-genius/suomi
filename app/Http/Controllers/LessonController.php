@@ -90,6 +90,25 @@ class LessonController extends Controller
 
     }
 
+
+
+    /**
+     * Display the specified resource for grammar.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function card($id)
+    {
+        $user_id = Auth::id();
+        $lessons = Lesson::findOrFail($id);
+        $lessons = Lesson::all()->where('id', $id)->first();
+        $word_id = json_decode($lessons->word_id);
+        $words = Word::all()->whereIn('id', $word_id);
+        return view('card', compact('lessons', 'words'));
+
+    }
+
     /**
      * Show the form for editing the specified resource.
      *

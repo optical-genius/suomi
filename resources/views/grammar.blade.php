@@ -18,7 +18,6 @@
 @section('content')
 
     <script>
-
         $( document ).ready(function() {
 
             var wrongAnswer = 0;
@@ -43,13 +42,8 @@
                         $( ".wrongAnswer" ).html( "<p>Неправильных ответов: <b>" + wrongAnswer + "</b></p>" );
                     }
                 });
-
             });
-
         });
-
-
-
     </script>
 
 
@@ -96,12 +90,4 @@
             <div class="wrightAnswer"></div>
         </div>
     </div>
-
-
-
-
-
 @endsection
-
-
-

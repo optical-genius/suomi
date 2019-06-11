@@ -188,11 +188,38 @@ class WordController extends Controller
      */
     public function update(Request $request)
     {
-        $words = Word::find($request->input('id')[0]);
-        $words->word_suomi = $request->input('word_suomi')[0];
-        $words->word_rus = $request->input('word_rus')[0];
-        $words->save();
-        return redirect('/word');
+
+        if (file_exists($request->file('select_file'))){
+            $this->validate($request, [
+                'select_file' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048'
+            ]);
+            $image = $request->file('select_file');
+            $new_name = $request->input('word_suomi')[0] . '_' . rand() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path("img/word"), $new_name);
+            $words = Word::find($request->input('id')[0]);
+            $words->word_suomi = $request->input('word_suomi')[0];
+            $words->word_rus = $request->input('word_rus')[0];
+
+            if(file_exists('../public/img/word/'.$words->img) && !is_null($words->img)){
+                Word::deleteImageFromWord($words->img);
+
+            }
+
+            $words->img = $new_name;
+            $words->save();
+            return redirect('/word');
+        }
+        else {
+            $words = Word::find($request->input('id')[0]);
+            $words->word_suomi = $request->input('word_suomi')[0];
+            $words->word_rus = $request->input('word_rus')[0];
+            $words->save();
+            return redirect('/word');
+        }
+
+
+
+
     }
 
 

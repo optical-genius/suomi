@@ -8,6 +8,10 @@ class Word extends Model
 {
     //
 
-    protected $fillable = ['word_suomi', 'word_rus', 'user_id'];
+    protected $fillable = ['word_suomi', 'word_rus', 'user_id', 'img'];
     protected $guarded = ['id'];
+
+    public static function deleteImageFromWord($image){
+        unlink(public_path('/img/word/'.$image));
+    }
 }

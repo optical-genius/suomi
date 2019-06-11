@@ -52,6 +52,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('add-word-to-lesson', 'LessonController@add_word_to_lesson');
 
 
+    Route::get('lessons/card/{id}', 'LessonController@card');
+
     //VocabularyController routes
     Route::get('vocabulary', 'VocabularyController@index');
 
