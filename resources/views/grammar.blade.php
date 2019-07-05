@@ -9,7 +9,6 @@
 ?>
 
 
-
 @extends('layouts.app')
 @section('title')
     {{ $lessons['name'] }}
@@ -18,28 +17,34 @@
 @section('content')
 
     <script>
-        $( document ).ready(function() {
+        $(document).ready(function () {
 
             var wrongAnswer = 0;
             var wrightAnswer = 0;
 
-            $( ".btn" ).click(function() {
+            $(".btn").click(function () {
                 var buttonid = $(this).attr('id');
 
-                $("input[id="+ buttonid +"]").each(function (index, value) {
+                $("input[id=" + buttonid + "]").each(function (index, value) {
                     var name = $(this).val().toLowerCase();
                     var originalname = $(this).attr('name');
                     var splitoriginalname = originalname.split(', ');
-                    if ( name == splitoriginalname[0] || name == splitoriginalname[1] ) {
-                        $( ".btn[id="+ buttonid +"]" ).css( {'backgroundColor' : '#30d13c', 'transition':'background-color 1000ms linear'}).prop('disabled', true).html("Верно");
+                    if (name == splitoriginalname[0] || name == splitoriginalname[1]) {
+                        $(".btn[id=" + buttonid + "]").css({
+                            'backgroundColor': '#30d13c',
+                            'transition': 'background-color 1000ms linear'
+                        }).prop('disabled', true).html("Верно");
                         ++wrightAnswer;
-                        $( ".wrightAnswer" ).html( "<p>Правильных ответов: <b>" + wrightAnswer + "</b></p>" );
+                        $(".wrightAnswer").html("<p>Правильных ответов: <b>" + wrightAnswer + "</b></p>");
                     }
                     else {
-                        $( ".btn[id="+ buttonid +"]" ).css( {'backgroundColor' : '#d13037', 'transition':'background-color 1000ms linear'}).prop('disabled', true).html("Неверно");
+                        $(".btn[id=" + buttonid + "]").css({
+                            'backgroundColor': '#d13037',
+                            'transition': 'background-color 1000ms linear'
+                        }).prop('disabled', true).html("Неверно");
                         $(this).val($(this).attr('name'));
                         ++wrongAnswer;
-                        $( ".wrongAnswer" ).html( "<p>Неправильных ответов: <b>" + wrongAnswer + "</b></p>" );
+                        $(".wrongAnswer").html("<p>Неправильных ответов: <b>" + wrongAnswer + "</b></p>");
                     }
                 });
             });
@@ -59,10 +64,7 @@
             <table class="striped">
                 <thead>
                 <tr>
-                    <th>#</th>
-                    <th>Русское слово</th>
-                    <th>Ваш ответ</th>
-                    <th></th>
+
                 </tr>
                 </thead>
 
@@ -70,10 +72,17 @@
                 @foreach($words as $word)
                     <form action="" id="{{ $word->id }}">
                         <tr>
-                            <th scope="row">{{ $table_id++ }}</th>
-                            <td>{{ $word->word_rus }}</td>
-                            <td><input type="text" class="formcontrol" id="{{ $word->id }}" name="{{ $word->word_suomi }}"></td>
-                            <td><button type="button" id="{{ $word->id }}" class="btn btn-small">Проверить</button></td>
+
+                            <ul class="collection" style="margin-bottom: 30px;">
+                                <li class="collection-item"><p style="font-size: 1.6em">{{ $word->word_rus }}</p></li>
+                                <li class="collection-item"><input type="text" class="formcontrol" id="{{ $word->id }}"
+                                                                   name="{{ $word->word_suomi }}"></li>
+                                <li class="collection-item">
+                                    <button type="button" id="{{ $word->id }}" class="btn btn-small">Проверить</button>
+                                </li>
+                            </ul>
+
+
                         </tr>
                     </form>
                 @endforeach

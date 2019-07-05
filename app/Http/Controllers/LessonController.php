@@ -34,11 +34,10 @@ class LessonController extends Controller
     }
 
 
-
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -58,7 +57,7 @@ class LessonController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -76,7 +75,7 @@ class LessonController extends Controller
     /**
      * Display the specified resource for grammar.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function grammar($id)
@@ -91,11 +90,10 @@ class LessonController extends Controller
     }
 
 
-
     /**
      * Display the specified resource for grammar.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function card($id)
@@ -112,7 +110,7 @@ class LessonController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -120,7 +118,7 @@ class LessonController extends Controller
 
         $lessons = Lesson::findOrFail($id);
         $lessons = Lesson::all()->where('id', $id)->first();
-        $word_id = json_decode($lessons->word_id , true);
+        $word_id = json_decode($lessons->word_id, true);
         $words = Word::all()->whereIn('id', $word_id);
         $user_id = Auth::id();
         $new_words = DB::table('words')
@@ -134,8 +132,8 @@ class LessonController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -146,7 +144,7 @@ class LessonController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
@@ -195,13 +193,12 @@ class LessonController extends Controller
 
         if (in_array($word['id'], $lessonsDecode)) {
             echo "такое значение добавлено";
-        }
-        else {
+        } else {
             array_push($lessonsDecode, "$word[id]");
             $lessons->word_id = json_encode($lessonsDecode);
             $lessons->user_id = auth()->user()->id;
             $lessons->save();
-            return redirect('lessons/edit/'.$lessonsid);
+            return redirect('lessons/edit/' . $lessonsid);
         }
     }
 
@@ -212,7 +209,6 @@ class LessonController extends Controller
         $lessons = Lesson::orderBy('name')->where('user_id', $user_id)->get();
         return view('alllessons', compact('lessons'));
     }
-
 
 
 }

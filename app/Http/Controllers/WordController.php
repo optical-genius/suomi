@@ -64,11 +64,10 @@ class WordController extends Controller
     }
 
 
-
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -84,7 +83,7 @@ class WordController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show()
@@ -166,7 +165,7 @@ class WordController extends Controller
      * Show the form for editing the specified resource.
      * Редактирование ресурса
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -182,14 +181,14 @@ class WordController extends Controller
      * Update the specified resource in storage.
      * Обновление записи
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request)
     {
 
-        if (file_exists($request->file('select_file'))){
+        if (file_exists($request->file('select_file'))) {
             $this->validate($request, [
                 'select_file' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048'
             ]);
@@ -200,7 +199,7 @@ class WordController extends Controller
             $words->word_suomi = $request->input('word_suomi')[0];
             $words->word_rus = $request->input('word_rus')[0];
 
-            if(file_exists('../public/img/word/'.$words->img) && !is_null($words->img)){
+            if (file_exists('../public/img/word/' . $words->img) && !is_null($words->img)) {
                 Word::deleteImageFromWord($words->img);
 
             }
@@ -208,16 +207,13 @@ class WordController extends Controller
             $words->img = $new_name;
             $words->save();
             return redirect('/word');
-        }
-        else {
+        } else {
             $words = Word::find($request->input('id')[0]);
             $words->word_suomi = $request->input('word_suomi')[0];
             $words->word_rus = $request->input('word_rus')[0];
             $words->save();
             return redirect('/word');
         }
-
-
 
 
     }
@@ -227,7 +223,7 @@ class WordController extends Controller
      * Remove the specified resource from storage.
      * Удаление одной записи
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
@@ -258,7 +254,7 @@ class WordController extends Controller
      * Добавляем слова из большого словаря в пользовательский словарь
      */
 
-    public function addFromBigVocabulary (Request $request)
+    public function addFromBigVocabulary(Request $request)
     {
         $input = Input::get('data');
 
@@ -268,7 +264,6 @@ class WordController extends Controller
             $word->save();
         }
     }
-
 
 
     public function updateajax(Request $request)

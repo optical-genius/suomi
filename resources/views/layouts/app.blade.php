@@ -30,7 +30,7 @@
             $('.tabs').tabs();
 
             $('.carousel').carousel({
-                indicators: true
+
             });
         });
 
