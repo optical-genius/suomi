@@ -7,11 +7,11 @@
  */
 
 ?>
-
 @extends('layouts.app')
 @section('title')
    Добавление/удаление слов в словарь
 @stop
+
 
 
 @section('content')
@@ -40,6 +40,8 @@
                     <h5 style="padding-top: 40px;">Добавление/удаление слов в словарь | lisää/poista sanoja</h5>
                  </div>
              </div>
+
+
 
             <div class="row">
                  <form method="POST" action="/wordadd" class="col s12">

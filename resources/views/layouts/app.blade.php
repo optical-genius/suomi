@@ -23,6 +23,22 @@
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" type="text/javascript"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
+
+    <script type="text/javascript">
+        $(function() {
+            $(window).scroll(function() {
+                if($(this).scrollTop() != 0) {
+                    $('#back-to-top').fadeIn();
+                } else {
+                    $('#back-to-top').fadeOut();
+                }
+            });
+            $('#back-to-top').click(function() {
+                $('body,html').animate({scrollTop:0},800);
+            });
+        });
+    </script>
+
     <script>
         $(document).ready(function(){
             $('.sidenav').sidenav();
@@ -79,6 +95,9 @@
 </head>
 <body>
 
+<div class="fixed-action-btn">
+    <a id="back-to-top" class="btn-floating btn-large waves-effect waves-light red" style="display:none;"><i class="material-icons">keyboard_arrow_up</i></a>
+</div>
 
 
 <nav>
